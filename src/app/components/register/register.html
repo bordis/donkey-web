@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Create Account</h2>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+    @if (success()) {
+      <p class="success">{{ success() }}</p>
+    }
+
+    <form (ngSubmit)="submit()">
+      <label>Email
+        <input type="email" [(ngModel)]="email" name="email" placeholder="you@example.com" required />
+      </label>
+      <label>Password
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Min. 6 characters" required />
+      </label>
+      <label>Role
+        <select [(ngModel)]="role" name="role">
+          <option value="SPONSOR">Sponsor — I want to support a donkey</option>
+          <option value="SPONSORED">Producer — I own and care for donkeys</option>
+        </select>
+      </label>
+      <button type="submit" [disabled]="loading()" class="btn btn-primary">
+        {{ loading() ? 'Creating…' : 'Register' }}
+      </button>
+    </form>
+
+    <p class="switch-link">Already have an account? <a routerLink="/login">Login</a></p>
+  </div>
+</div>

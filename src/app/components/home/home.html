@@ -1,0 +1,39 @@
+<div class="home-container">
+  <div class="hero">
+    <h1>🫏 Burros de Miranda</h1>
+    <p>Connecting sponsors with donkeys — help preserve this endangered species.</p>
+    @if (authService.currentUser()?.role === 'SPONSORED') {
+      <a routerLink="/create-post" class="btn btn-primary">+ New Post</a>
+    }
+  </div>
+
+  @if (loading()) {
+    <p class="center-text">Loading posts…</p>
+  }
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (!loading() && posts().length === 0 && !error()) {
+    <p class="center-text">No posts yet. Be the first to share a donkey update!</p>
+  }
+
+  <div class="posts-grid">
+    @for (post of posts(); track post.id) {
+      <article class="post-card">
+        @if (post.photoUrl) {
+          <img [src]="post.photoUrl" [alt]="post.donkeyName" class="post-photo" />
+        }
+        <div class="post-body">
+          <h2 class="donkey-name">🫏 {{ post.donkeyName }}</h2>
+          <p class="post-content">{{ post.content }}</p>
+          <footer class="post-meta">
+            <span>By {{ post.author.email }}</span>
+            <span>{{ formatDate(post.createdAt) }}</span>
+          </footer>
+        </div>
+      </article>
+    }
+  </div>
+</div>

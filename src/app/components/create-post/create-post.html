@@ -1,0 +1,25 @@
+<div class="auth-container">
+  <div class="auth-card wide">
+    <h2>New Donkey Post</h2>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    <form (ngSubmit)="submit()">
+      <label>Donkey Name *
+        <input type="text" [(ngModel)]="donkeyName" name="donkeyName" placeholder="e.g. Farruco" required />
+      </label>
+      <label>Activity *
+        <textarea [(ngModel)]="content" name="content" rows="5"
+          placeholder="Describe today's activity… e.g. Spent the day running in the meadow." required></textarea>
+      </label>
+      <label>Photo URL (optional)
+        <input type="url" [(ngModel)]="photoUrl" name="photoUrl" placeholder="https://example.com/photo.jpg" />
+      </label>
+      <button type="submit" [disabled]="loading()" class="btn btn-primary">
+        {{ loading() ? 'Posting…' : 'Publish Post' }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #f5ede0;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+
+  h1 { font-size: 2rem; color: #5a3a1a; margin: 0 0 0.5rem; }
+  p  { color: #7a5c3a; margin: 0 0 1rem; }
+}
+
+.posts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post-card {
+  border: 1px solid #e0cbb4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.post-photo {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.post-body { padding: 1rem; }
+
+.donkey-name { margin: 0 0 0.5rem; color: #5a3a1a; font-size: 1.2rem; }
+
+.post-content { color: #333; margin: 0 0 1rem; white-space: pre-wrap; }
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.center-text { text-align: center; color: #888; margin-top: 2rem; }
+.error { color: #c0392b; text-align: center; margin-top: 1rem; }
