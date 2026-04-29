@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { sponsoredGuard } from './guards/auth.guard';
+import { sponsoredGuard, producerGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -18,6 +18,11 @@ export const routes: Routes = [
     path: 'create-post',
     loadComponent: () => import('./components/create-post/create-post').then(m => m.CreatePostComponent),
     canActivate: [sponsoredGuard]
+  },
+  {
+    path: 'create-donkey',
+    loadComponent: () => import('./components/create-donkey/create-donkey').then(m => m.CreateDonkeyComponent),
+    canActivate: [producerGuard]
   },
   { path: '**', redirectTo: '' }
 ];

@@ -43,8 +43,32 @@ body {
     }
 
     .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
       font-size: 0.85rem;
       color: #c8a97a;
+
+      .role-badge {
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+
+        &.role-producer {
+          background: #6b3a1f;
+          color: #f5c97a;
+          border: 1px solid #a0622a;
+        }
+
+        &.role-sponsor {
+          background: #1a3a5c;
+          color: #7ec8f5;
+          border: 1px solid #2a6096;
+        }
+      }
     }
   }
 }

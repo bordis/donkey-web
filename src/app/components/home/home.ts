@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
 import { Post } from '../../models/post.model';
 
 @Component({
@@ -13,6 +14,7 @@ import { Post } from '../../models/post.model';
 export class HomeComponent implements OnInit {
   private postService = inject(PostService);
   protected authService = inject(AuthService);
+  protected storageService = inject(StorageService);
 
   posts = signal<Post[]>([]);
   loading = signal(true);
@@ -20,9 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe({
-      
       next: posts => {
-        // console.log('Posts loaded:', posts);
         this.posts.set(posts);
         this.loading.set(false);
       },

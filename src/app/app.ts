@@ -13,6 +13,11 @@ export class App {
   protected authService = inject(AuthService);
   private router = inject(Router);
 
+  ngOnInit(): void {
+    console.log('App initialized');
+    console.log('Current user:', this.authService.currentUser());
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);

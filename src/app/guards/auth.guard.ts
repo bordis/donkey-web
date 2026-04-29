@@ -16,7 +16,18 @@ export const sponsoredGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
   const router = inject(Router);
   const user = auth.currentUser();
-  if (!user || user.role !== 'SPONSORED') {
+  if (!user) {
+    router.navigate(['/login']);
+    return false;
+  }
+  return true;
+};
+
+export const producerGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  const user = auth.currentUser();
+  if (!user || user.role !== 'PRODUCER') {
     router.navigate(['/']);
     return false;
   }

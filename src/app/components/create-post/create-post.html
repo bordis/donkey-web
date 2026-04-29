@@ -7,16 +7,36 @@
     }
 
     <form (ngSubmit)="submit()">
-      <label>Donkey Name *
-        <input type="text" [(ngModel)]="donkeyName" name="donkeyName" placeholder="e.g. Farruco" required />
-      </label>
+      <div class="field-label">Donkey *</div>
+      <div class="donkey-grid">
+        @for (donkey of donkeys(); track donkey.id) {
+          <button type="button"
+            class="donkey-card"
+            [class.selected]="selectedDonkeyId === donkey.id"
+            (click)="selectedDonkeyId = donkey.id">
+            @if (storageService.imageUrl(donkey.photoUrl)) {
+              <img [src]="storageService.imageUrl(donkey.photoUrl)" [alt]="donkey.name" class="donkey-card__img" />
+            } @else {
+              <div class="donkey-card__placeholder">🫏</div>
+            }
+            <div class="donkey-card__footer">{{ donkey.name }}</div>
+          </button>
+        }
+        @if (donkeys().length === 0) {
+          <p class="no-donkeys">No donkeys registered yet.</p>
+        }
+      </div>
+
       <label>Activity *
         <textarea [(ngModel)]="content" name="content" rows="5"
           placeholder="Describe today's activity… e.g. Spent the day running in the meadow." required></textarea>
       </label>
-      <label>Photo URL (optional)
-        <input type="url" [(ngModel)]="photoUrl" name="photoUrl" placeholder="https://example.com/photo.jpg" />
+      <label>Photo (optional)
+        <input type="file" accept="image/*" (change)="onPhotoSelected($event)" name="photo" />
       </label>
+      @if (photoPreview) {
+        <img [src]="photoPreview" alt="Preview" class="photo-preview" />
+      }
       <button type="submit" [disabled]="loading()" class="btn btn-primary">
         {{ loading() ? 'Posting…' : 'Publish Post' }}
       </button>

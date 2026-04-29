@@ -1,8 +1,11 @@
 <div class="home-container">
   <div class="hero">
     <h1>🫏 Burros de Miranda</h1>
-    <p>Connecting sponsors with donkeys — help preserve this endangered species.</p>
-    @if (authService.currentUser()?.role === 'SPONSORED') {
+    <p>Connecting sponsors with donkeys, help preserve this endangered species.</p>
+    @if (authService.currentUser()?.role === 'PRODUCER') {
+      <a routerLink="/create-donkey" class="btn btn-secondary">+ New Donkey</a>
+    }
+    @if (authService.currentUser()) {
       <a routerLink="/create-post" class="btn btn-primary">+ New Post</a>
     }
   </div>
@@ -22,11 +25,20 @@
   <div class="posts-grid">
     @for (post of posts(); track post.id) {
       <article class="post-card">
-        @if (post.photoUrl) {
-          <img [src]="post.photoUrl" [alt]="post.donkeyName" class="post-photo" />
+        @if (storageService.imageUrl(post.photoUrl)) {
+          <img [src]="storageService.imageUrl(post.photoUrl)" [alt]="post.donkey.name" class="post-photo" />
         }
         <div class="post-body">
-          <h2 class="donkey-name">🫏 {{ post.donkeyName }}</h2>
+          <div class="donkey-badge">
+            <div class="donkey-avatar">
+              @if (storageService.imageUrl(post.donkey.photoUrl)) {
+                <img [src]="storageService.imageUrl(post.donkey.photoUrl)" [alt]="post.donkey.name" />
+              } @else {
+                <span>{{ post.donkey.name.charAt(0).toUpperCase() }}</span>
+              }
+            </div>
+            <span class="donkey-badge-name">{{ post.donkey.name }}</span>
+          </div>
           <p class="post-content">{{ post.content }}</p>
           <footer class="post-meta">
             <span>By {{ post.author.email }}</span>

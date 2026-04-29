@@ -2,7 +2,10 @@
   <a routerLink="/" class="brand">Burros de Miranda</a>
   <div class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    @if (authService.currentUser()?.role === 'SPONSORED') {
+    @if (authService.currentUser()?.role === 'PRODUCER') {
+      <a routerLink="/create-donkey" routerLinkActive="active">New Donkey</a>
+    }
+    @if (authService.currentUser()) {
       <a routerLink="/create-post" routerLinkActive="active">New Post</a>
     }
     @if (!authService.currentUser()) {
@@ -10,7 +13,12 @@
       <a routerLink="/register" routerLinkActive="active" class="btn btn-primary">Register</a>
     }
     @if (authService.currentUser()) {
-      <span class="user-info">{{ authService.currentUser()?.email }}</span>
+      <span class="user-info">
+        {{ authService.currentUser()?.email }}
+        <span class="role-badge" [class.role-producer]="authService.currentUser()?.role === 'PRODUCER'" [class.role-sponsor]="authService.currentUser()?.role === 'SPONSOR'">
+          {{ authService.currentUser()?.role === 'PRODUCER' ? '🐴 Producer' : '⭐ Sponsor' }}
+        </span>
+      </span>
       <button (click)="logout()" class="btn btn-outline">Logout</button>
     }
   </div>

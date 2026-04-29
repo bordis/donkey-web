@@ -36,7 +36,44 @@
 
 .post-body { padding: 1rem; }
 
-.donkey-name { margin: 0 0 0.5rem; color: #5a3a1a; font-size: 1.2rem; }
+.donkey-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.donkey-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #5a3a1a;
+  border: 2px solid #c8a87a;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+}
+
+.donkey-badge-name {
+  font-weight: 600;
+  color: #5a3a1a;
+  font-size: 1rem;
+}
 
 .post-content { color: #333; margin: 0 0 1rem; white-space: pre-wrap; }
 

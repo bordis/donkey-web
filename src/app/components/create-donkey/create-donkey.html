@@ -1,0 +1,28 @@
+<div class="auth-container">
+  <div class="auth-card wide">
+    <h2>Register New Donkey</h2>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    <form (ngSubmit)="submit()">
+      <label>Name *
+        <input type="text" [(ngModel)]="name" name="name" placeholder="e.g. Burro das Flores" required />
+      </label>
+      <label>Bio
+        <textarea [(ngModel)]="bio" name="bio" rows="4"
+          placeholder="Tell us about this donkey…"></textarea>
+      </label>
+      <label>Photo (optional)
+        <input type="file" accept="image/*" (change)="onPhotoSelected($event)" name="photo" />
+      </label>
+      @if (photoPreview) {
+        <img [src]="photoPreview" alt="Preview" class="photo-preview" />
+      }
+      <button type="submit" [disabled]="loading()" class="btn btn-primary">
+        {{ loading() ? 'Registering…' : 'Register Donkey' }}
+      </button>
+    </form>
+  </div>
+</div>

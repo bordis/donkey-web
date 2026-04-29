@@ -13,7 +13,7 @@ export class PostService {
     return this.http.get<Post[]>(this.API);
   }
 
-  createPost(donkeyName: string, content: string, photoUrl: string, authorId: number): Observable<Post> {
-    return this.http.post<Post>(this.API, { donkeyName, content, photoUrl, authorId });
+  createPost(form: FormData): Observable<Post> {
+    return this.http.post<Post>(this.API, form);
   }
 }
