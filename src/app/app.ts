@@ -14,8 +14,8 @@ export class App {
   private router = inject(Router);
 
   ngOnInit(): void {
-    console.log('App initialized');
-    console.log('Current user:', this.authService.currentUser());
+    // console.log('App initialized');
+    // console.log('Current user:', this.authService.currentUser());
   }
 
   logout(): void {
